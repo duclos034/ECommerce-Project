@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Store page</title>
+        <style>
+            .item-list{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .item{
+                
+                margin: 10px;
+                padding: 10px;
+                border: 1px solid black;
+                width: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Items</h2>
+        
+        <div class="item-list">
+            {% for item in items %}
+            
+            <div class="item">
+                <form action="/storefront" method="post">
+                    <input type="hidden" name="item_id" value="{{ item[0] }}">
+                    <p><strong>Item Name:</strong> {{ item[1] }}</p>
+                    <p><strong>Description:</strong> {{ item[2] }}</p>
+                    <p><strong>Seller:</strong> {{ item[3] }}</p>
+                    <p><strong>Price:</strong> {{ item[4] }}</p>
+                    
+                    <button type="submit" onclick="">View</button>
+                    
+                </form>
+            </div>
+            
+        
+            {% endfor %}
+        </div>
+          
+        <br>
+        <button onclick="history.back()">Go Back</button>
+    </body>
+</html>

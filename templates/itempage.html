@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title>Item Page</title>
+        <style>
+            .item{
+                margin: 10px;
+                padding: 10px;
+                border: 1px solid black;
+                width: 400px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h3>Le item</h3>
+        <p> Selected item: {{ item[item_id] }}</p>
+        <div class="item">
+            <p><strong>Item Name:</strong> {{ item[1] }}</p>
+                    <p><strong>Description:</strong> {{ item[2] }}</p>
+                    <p><strong>Seller:</strong> {{ item[3] }}</p>
+                    <p><strong>Price:</strong> {{ item[4] }}</p>
+        </div>
+    </body>
+</html>
