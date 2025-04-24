@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<head>
+    <style> 
+        table,th,td{
+            border: 1px solid black
+        }
+    </style>    
+</head>
+<table>
+    <tr>
+        <th>Item ID </th> 
+        <th>Item Name </th>
+        <th>Description</th>
+        <th>Seller</th>
+        <th>Price</th>
+       
+    </tr>
+    {%if data%}
+    `{%for row in data%}
+        <tr>
+            <td>{{row[0]}}</td>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+            <td>
+                <form action="/delete/{{row[0]}}">
+                    <input type = "submit" value="Delete">
+                </form>
+            </td>
+           
+          
+        </tr>
+      {%endfor%}
+    {%endif%}
+    <tr>
+        <form action="/insert">
+            <td><input type="text" name = "itemid"></td>
+            <td><input type="text" name = "itemname"></td>
+            <td><input type="text" name = "description"></td>
+            <td><input type="text" name = "sellernanme"></td>
+            <td><input type="text" name = "price"></td>
+            <td><input type="submit" value ="Insert"></td>
+            
+        </form>
+    </tr>
+
+</table>
+
+</html>
