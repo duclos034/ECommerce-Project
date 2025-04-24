@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<head>
+    <style> 
+        table,th,td{
+            border: 1px solid black
+        }
+    </style>    
+</head>
+<table>
+    <tr>
+        <th>itemid</th>
+        <th>itemname </th>
+        <th>description</th>
+        <th>seller</th>
+        <th>price</th>
+        <th>quantity</th>
+        <th>conditon</th>
+        <th>item_category</th>
+        
+       
+    </tr>
+    {%if data%}
+    `{%for row in data%}
+        <tr>
+            
+            <td>{{row[0]}}</td>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+            <td>{{row[5]}}</td>
+            <td>{{row[6]}}</td>
+        
+            <td>{{row[8]}}</td>
+            <td>
+                <form action="/delete/{{row[0]}}">
+                    <input type = "submit" value="Delete">
+                </form>
+            </td>
+           
+          
+        </tr>
+      {%endfor%}
+    {%endif%}
+    
+
+
+
+    <tr>
+        <form action="/insert">
+            <td>Do not fill</td>
+            <td><input type="text" name = "itemname"></td>
+            <td><input type="text" name = "description"></td>
+            <td><input type="text" name = "seller"></td>
+            <td><input type="text" name = "price"></td>
+            <td><input type="text" name = "quantity"></td>
+            <td><input type="text" name = "condition"></td>
+            <td><input type="text" name = "item_category"></td>
+            <td><input type="submit" value ="Insert"></td>
+            
+        </form>
+    </tr>
+
+</table>
+<h2>Users</h2>
+<table>
+    <tr>
+        <th>firstname</th>
+        <th>lastname</th>
+        <th>username</th>
+        <th>password</th>
+        <th>userid</th>
+    </tr>
+    {% if users %}
+    {% for user in users %}
+    <tr>
+        <td>{{ user[0] }}</td>
+        <td>{{ user[1] }}</td>
+        <td>{{ user[2] }}</td>
+        <td>{{ user[3] }}</td>
+        <td>{{ user[4] }}</td>
+        <td>
+            <form action="/userdelete/{{user[4]}}">
+                <input type = "submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+
+
+</html>

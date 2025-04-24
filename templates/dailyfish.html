@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends 'topnav.html' %}
+{% block head %}
+<html>
+    <head>
+        <style>
+            .textbox{
+            position: absolute;
+            margin: 10px;
+            padding: 10px;
+            border: 3px solid blue;
+            background-color: white;
+            width:500px;
+            height: 500;
+            right: 150px;
+            top: 185px;
+            
+            
+            }
+        .textbox p{
+        color: black;
+    }
+        </style>
+        <title>Daily Fish</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}
+        <h1>Fish of the Day!</h1>
+        <h2>{{ fish_title }}</h2> <!-- Fish name -->
+        <img src="{{ url_for('static', filename='fish/' + fish_image) }}" alt="{{ fish_title }}" width="700" height="500">
+        <div class="textbox">
+            <p>{{ fish_fact }}</p>
+        </div>
+        
+        {% endblock %}
+    </body>
+</html>

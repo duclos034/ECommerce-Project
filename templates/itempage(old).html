@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% extends 'topnav.html'%}
+{% block head %}
+<html>
+    <head> 
+        <title>Store page</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <title>Item Page</title>
+        <style>
+            .item{
+                margin: 10px;
+                padding: 10px;
+                border: 3px solid blue;
+                background-color: black;
+                width: 200px;
+            }
+
+            .return {
+                position: absolute;
+                top: 100px;
+                right: 0;
+                padding: 10px;
+                background-color: blue;
+                color: white;
+            }
+            .cartButton{
+                position: absolute;
+                top: 0;
+                right: 70px;
+                padding: 10px;
+                background-color: blue;
+                color: white;
+            }
+
+
+        </style>
+        {% endblock %}
+        
+    </head>
+
+    <body>
+        {% block content %}
+        <h3>Le item</h3>
+        {% if data %}
+        <div class="item">
+            <form action ="{{url_for('add_to_cart')}}" method="post">
+                <input type="hidden" name="item_id" value="{{data[0]}}">
+                <input type="hidden" name="item_name" value="{{data[1]}}">
+                <input type="hidden" name="description" value="{{data[2]}}">
+                <input type="hidden" name="seller" value="{{data[3]}}">
+                <input type="hidden" name="price" value="{{data[4]}}">
+                
+                <p><strong>Item ID:</strong> {{ data[0] }}</p>
+                <p><strong>Item Name:</strong> {{ data[1] }}</p>
+                <p><strong>Description:</strong> {{ data[2] }}</p>
+                <p><strong>Seller:</strong> {{ data[3] }}</p>
+                <p><strong>Price:</strong> {{ data[4] }}</p>
+                <button type ="submit">Add to cart</button>
+            </form>
+        </div>
+        
+        <button class="return" onclick="history.back()">Go Back</button>
+        
+        {% else %}
+        <p>{{ error }}</p>
+        {% endif %}
+        {% endblock %}
+    </body>
+</html>

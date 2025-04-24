@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% extends 'topnav.html' %}
+<html>
+    <head>
+        <style>
+           table {
+                width: 100%;
+                border-collapse: collapse;
+                position: relative;
+                z-index: 2;
+                color: black;
+                background-color: white;
+            }
+
+            th, td {
+                padding: 15px;
+                text-align: left;
+                border-bottom: 1px solid white;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            tr:hover {
+                background-color: #f5f5f5;
+            }
+            .button-container {
+                margin-top: 20px;
+            }
+            .textbox{
+            position: absolute;
+            margin: 10px;
+            padding: 10px;
+            border: 3px solid blue;
+            background-color: white;
+            width:200px;
+            right: 20px;
+            top: 100px;
+            z-index: 0;
+        }
+        .textbox p{
+            color: black;
+        }
+
+        .checkoutButton{
+            color:purple;
+        }
+        </style>
+        {% block content %}
+      
+        <title>Shopping Cart</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <h1>Shopping Cart</h1>
+        
+        {% if cart_items %}
+       
+        <table>
+            <thead>
+                <tr>
+                    <th>Item ID</th>
+                    <th>Item Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Your cart is empty.</p>
+        {% endif %}
+    
+        <div class="button-container">
+            <button onclick="history.back()">Go Back</button>
+        </div>
+        <div class="checkoutButton">
+            <button onclick="window.location.href='/checkout'">Checkout</button>
+        </div>
+
+
+        {% endblock %}
+    </body>
+</html>

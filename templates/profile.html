@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends 'topnav.html'%}
+<html>
+{% block head %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  {% endblock %}
+</head>
+    <body>
+        {% block content %}
+    <h1>This is the profile page</h1>
+    {% endblock %}
+    </body>
+</html>

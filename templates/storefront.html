@@ -1,8 +1,12 @@
 <!DOCTYPE html>
+{% extends 'topnav.html'%}
+{% block head%}
 <html>
     <head>
         <title>Store page</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
         <style>
+
             .item-list{
                 display: flex;
                 flex-wrap: wrap;
@@ -11,8 +15,18 @@
                 
                 margin: 10px;
                 padding: 10px;
-                border: 1px solid black;
+                border: 3px solid blue;
+                background-color: gray;
                 width: 200px;
+                
+            }
+
+            .item-header{
+                background-color: blue;
+                color: white;
+                padding: 2px;
+                text-align: center;
+                font-weight: bold;
             }
             .login{
                 position: absolute;
@@ -22,21 +36,54 @@
                 background-color: purple;
                 color: white;
             }
+            .return{
+                position: absolute;
+                top: 55px;
+                right: 6px;
+                padding: 10px;
+                background-color: blue;
+                color: white;
+            }
+            .cartButton{
+                position: absolute;
+                top: 0;
+                right: 70px;
+                padding: 10px;
+                background-color: blue;
+                color: white;
+            }
+
         </style>
+        {% endblock %}
     </head>
     <body>
-        <h2>Items</h2>
+        {% block content %}
+        <h2><u>Items</u></h2>
+        <form action="{{ url_for('categorySort') }}" method="get">
+            
+                <button type="submit">SORT BY CATEGORY</button>
+        </form>
+
+        <form action="{{ url_for('priceSort') }}" method="get">
+            
+            <button type="submit">SORT BY PRICE</button>
+        </form>
         
         <div class="item-list">
             {% for item in data %}
             
             <div class="item">
                 <form action="{{ url_for('itempage') }}" method="get">
+                    <div class="item-header">
                     <input type="hidden" name="item_id" value="{{ item[0] }}">
-                    <p><strong>Item Name:</strong> {{ item[1] }}</p>
+                    <p> {{ item[1] }}</p>
+                    </div>
+                
                     <p><strong>Description:</strong> {{ item[2] }}</p>
                     <p><strong>Seller:</strong> {{ item[3] }}</p>
-                    <p><strong>Price:</strong> {{ item[4] }}</p>
+                    <p><strong>Price:</strong> ${{ item[4] }}</p>
+                    <p><strong>Quantity:</strong> {{ item[5] }}</p>
+                    <p><strong>Condition:</strong> {{ item[6] }}</p>
                     <button type="submit">View</button>
                     
                 </form>
@@ -44,8 +91,10 @@
             
             {% endfor %}
         </div>
-        <button class="login" onclick="window.location.href='/login'">Login Perchance?</button>
+      
         <br>
-        <button onclick="history.back()">Go Back</button>
+        
+        <button class="return" onclick="history.back()">Go Back</button>
+        {% endblock %}
     </body>
 </html>

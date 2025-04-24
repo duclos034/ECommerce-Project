@@ -1,37 +1,140 @@
 <!DOCTYPE html>
+{% extends 'topnav.html' %}
+{% block head %}
 <html>
     <head>
         <title>The Evil Store Page</title>
         
+        
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+       
+        
     <style>
-        .Login{
+        .Profile{
             position: absolute;
             top: 0;
-            right: 0;
+            right: 0px;
             padding: 10px;
             background-color: purple;
             color: white;
             
         }
-     
+        .Submission{
+            position:absolute;
+            top: 0;
+            right: 60px;
+            padding: 10px;
+            background-color: purple;
+            color: white;
+        }
+        .textbox{
+            position: absolute;
+            margin: 10px;
+            padding: 10px;
+            border: 3px solid blue;
+            background-color: white;
+            width:200px;
+            right: 20px;
+            top: 100px;
+        }
+        .textbox p{
+            color: black;
+        }
+        .h1{
+            color:black;
+        }
+        .item-list{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .item{
+            margin: 10px;
+            padding: 10px;
+            border: 3px solid blue;
+            background-color: gray;
+            width: 200px;
+        }
+
+        .item-header{
+                background-color: blue;
+                color: white;
+                padding: 2px;
+                text-align: center;
+                font-weight: bold;
+            }
+
+        .textbox2{
+            margin: 10px;
+            padding: 10px;
+            border: 3px solid blue;
+            background-color: transparent;
+            width:auto;
+            display: flex;
+            gap:10px;
+           
+        }
+
+      
+
+
+        
     </style>
+    {% endblock %}
     </head>    
     <body>
-        <h1>Squidfinity</h1>
-        <button class="Login" onclick="window.location.href='/login'">Login Perchance?</button>
+        {% block content %}
+        <h1><u>Fish Galore</u></h1>
+
 
         <h2>Main Page</h2>
+
+        <div class="textbox">
+            <p>Hello world</p>
+        </div>
         
+        <div class ="textbox">
+            <h2>news</h2>
+            <p>Trout population skyrockets amid tarrifs</p>
+           
+        </div>
+
+        <img src="{{ url_for('static', filename='images/fsh-spin.gif') }}" alt="Fish GIF">
         
         <p>Whatre ya buying stranger?</p>
-        <form method="post" action ="/">
-        <input type = "submit" name = "Open Coconut" value = "Open Coconut">      
+        <form method="post" action ="/coconut">
+            <button type="submit" name="Open Coconut" value="Open Coconut">Open Coconut</button>
         </form>
-        <br>
-        <button onclick="window.location.href='/storefront'">Go to Storefront</button>
-        
+       
+        <div class ="textbox2">
+            <h1>NEW LISTINGS</h1>
+            <div class="item-list">
+                {% for item in data %}
+
+                <div class="item">
+                    <form action="{{ url_for('itempage') }}" method="get">
+                        <div class="item-header">
+                        <input type="hidden" name="item_id" value="{{ item[0] }}">
+                        <p> {{ item[1] }}</p>
+                        </div>
+                    
+                        <p><strong>Description:</strong> {{ item[2] }}</p>
+                        <p><strong>Seller:</strong> {{ item[3] }}</p>
+                        <p><strong>Price:</strong> ${{ item[4] }}</p>
+                        <p><strong>Quantity:</strong> {{ item[5] }}</p>
+                        <p><strong>Condition:</strong> {{ item[6] }}</p>
+                        <button type="submit">View</button>
+                        
+                    </form>
+                </div>
+                
+
+                {% endfor %}
+            </div>
+        </div>
+
+        {% endblock %}
+
 
     </body>
-
-
+   
 </html>

@@ -1,30 +1,117 @@
 <!DOCTYPE html>
+{% extends 'topnav.html'%}
+{% block head %}
 <html>
     <head> 
+        <title>Store page</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
         <title>Item Page</title>
         <style>
             .item{
                 margin: 10px;
                 padding: 10px;
-                border: 1px solid black;
-                width: 400px;
+                border: 3px solid blue;
+                background-color: black;
+                width: 200px;
             }
+
+            .return {
+                position: absolute;
+                top: 100px;
+                right: 0;
+                padding: 10px;
+                background-color: blue;
+                color: white;
+            }
+            .cartButton{
+                position: absolute;
+                left: 70px;
+                padding: 10px;
+                background-color: blue;
+                color: white;
+            }
+
+            .textbox{
+            position: absolute;
+            top: 38%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 10px;
+            padding: 10px;
+            border: 3px solid blue;
+            background-color: white;
+            width: 50%;
+            height: auto;
+            
+
+            }
+            .textbox p{
+                color:black;
+            }
+
+            .imagebox{
+                position: absolute;
+                left:0;
+                height: 50%;
+                width: 20%;
+                
+                margin: 10px;
+                padding: 10px;;
+            }
+            
+            .imagebox img{
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                border-radius: 5px;
+            }
+            
+
+
         </style>
+        {% endblock %}
+        
     </head>
 
     <body>
-        <h3>Le item</h3>
+        {% block content %}
         {% if data %}
-        <div class="item">
-            <p><strong>Item ID:</strong> {{ data[0] }}</p>
-            <p><strong>Item Name:</strong> {{ data[1] }}</p>
-            <p><strong>Description:</strong> {{ data[2] }}</p>
-            <p><strong>Seller:</strong> {{ data[3] }}</p>
-            <p><strong>Price:</strong> {{ data[4] }}</p>
-        </div>
-        <button onclick="history.back()">Go Back</button>
+
+
+
+            <div class="imagebox">
+                <img src="{{url_for('static',filename ='uploads/' + data[7])}}" alt = "Item Image">
+            </div>
+
+            <form action ="{{url_for('add_to_cart')}}" method="post">
+                <input type="hidden" name="item_id" value="{{ data[0]}}">
+                <input type="hidden" name="item_name" value="{{data[1]}}">
+                <input type="hidden" name="description" value="{{data[2]}}">
+                <input type="hidden" name="sellername" value="{{data[3]}}">
+                <input type="hidden" name="price" value="{{data[4]}}">
+                <input type="hidden" name="quantity" value="{{data[5]}}">
+                <input type="hidden" name="condition" value="{{data[6]}}">
+                <input type="hidden" name="item_category" value="{{data[8]}}">
+                
+                <div class="textbox">
+                    <h1> {{ data[1] }}</h1>
+                    <p><strong>Description:</strong> {{ data[2] }}</p>
+                    <p><strong>Seller:</strong> {{ data[3] }}</p>
+                    <p><strong>quantity:</strong> {{ data[5] }} </p>
+                    <p><strong>condition:</strong> {{ data[6] }} </p>
+                    <p><strong>category:</strong> {{ data[8] }} </p>
+                    <h2><strong>Price:</strong> {{ data[4] }}</h2>
+                    <button type ="submit">Add to cart</button>
+                </div>
+            </form>
+        
+
+        
+        <button class="return" onclick="history.back()">Go Back</button>
+        
         {% else %}
         <p>{{ error }}</p>
         {% endif %}
+        {% endblock %}
     </body>
 </html>

@@ -1,0 +1,24 @@
+/* filepath: /c:/Users/duclo/Downloads/ECommerce Project/static/css/styles.css */
+/*<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">*/
+
+p{
+    color: white;
+
+}
+
+html{
+    background-color: black;
+    background-image: url('/static/images/underwater_background.jpg');
+    background-size: 100% auto;
+    
+}
+
+
+
+input{
+    background-color: lightblue;
+}
+button{
+    background-color: lightskyblue;
+    color: white;
+}

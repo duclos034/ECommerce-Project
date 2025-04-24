@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+{% extends 'topnav.html' %}
+{% block head%}
 <html>
+   {% endblock %}
     <body>
+        {% block content %}
+        <a href="javascript:history.back()">
         <img src="{{ url_for('static', filename='images/coconut.jpg') }}" alt="Coconut Image" width="200" height="200">
+        </a>
         <h1>Coconut</h1>
+        <p>You have stepped off the path, you are greeted by coconut</p>
         <br>
         <button onclick ="history.back()">Close Coconut</button>
+        {% endblock %}
     </body>
 </html>

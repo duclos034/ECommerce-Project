@@ -1,4 +1,51 @@
 <!DOCTYPE html>
+{% extends 'topnav.html' %}
+{% block head%}
 <html>
-    
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    {% endblock %}
+    </head>
+    <body>
+        {% block content %}
+        <h1>Welcome to the item submissions</h1>
+        <form action="{{ url_for('itemsubmission')}}" method="post" enctype="multipart/form-data">
+            <label for="itemname">product name</label>
+            <input type="text" id="itemname" name="itemname" required>
+            <br><br>
+            <label for="description">provide a description</label>
+            <input type="text" id="description" name="description" required>
+            <br><br>
+            <label for="sellername">name of seller</label>
+            <input type="text" id="sellername" name="sellername" required>
+            <br><br>
+            <label for="price">provide a price</label>
+            <input type="text" id="price" name="price" required>
+            <br><br>
+            <label for="quantity">how many items are available</label>
+            <input type="text" id="quantity" name="quantity" required>
+            <br><br>
+            <label for="condition">What is the condition of the item?</label>
+            <input type="text" id="condition" name="condition" required>
+            <br><br>
+            <label for="category"> What is the category of the item?</label>
+            <select id="category" name="category">
+                <option value="electronics">electronics</option>
+                <option value="sports">sports</option>
+                <option value="culinary">culinary</option>
+                <option value="aquatic">aquatic</option>
+                <option value="furniture">furniture</option>
+                <option value="animal">animal</option>
+
+            </select>
+            <br><br>
+            <label for="file">Upload Image</label>
+            <input type="file" id="file" name="file" required>
+            <br><br>
+            <button type="submit" value="upload">Submit item</button>
+              
+        </form>
+
+    {% endblock %}
+    </body>
 </html>
