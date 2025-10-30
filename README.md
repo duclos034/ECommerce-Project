@@ -1,1 +1,1 @@
-1.0 of the website is here! This was my software engineering project from Spring of 2025, it has finished it's main dev cycle and is now in a usable form(in theory though there is no real listings here it is a simulated web store). 
+1.0 of the website is here! Now including the famous "Fish Of The Day" feature! This was my software engineering project from Spring of 2025, it has finished it's main dev cycle and is now in a usable form(in theory though there is no real listings here it is a simulated web store). 
